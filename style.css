@@ -50,8 +50,8 @@ header {
 }
 
 .bar{
-    width: 10px;
-    margin: 0 2px;
+    width: 20px;
+    margin: 0 5px;
     background-color: #47b2d0;
     border-radius: 4px 4px 0 0;
     transition: height 0.4s ease,background-color 0.2s ease;
