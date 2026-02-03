@@ -11,7 +11,6 @@ function sleep(ms){
 const garrbtn = document.getElementById('newarr');
 const barcont = document.getElementById('bar-container');
 garrbtn.addEventListener('click',generatbars);
-
 function generatbars(){
     console.log("clicked")
     barcont.innerHTML = "";
@@ -31,14 +30,11 @@ bubblebtn.addEventListener('click', () => {
     toggleControls(false);     
     bubbleSort();              
 });
-
-
 async function demobs(){
     console.log("start");
     await sleep(1000);
     console.log("end");
 }
-
 async function bubbleSort(){
     
     let bars = document.querySelectorAll('.bar');
@@ -47,7 +43,6 @@ async function bubbleSort(){
             bars[j].style.backgroundColor = "yellow";
             bars[j + 1].style.backgroundColor = "yellow";
             await sleep(stepdelay);
-
             let height1 = parseInt(bars[j].style.height);
             let height2 = parseInt(bars[j + 1].style.height);
             if (height1 > height2){
@@ -63,7 +58,6 @@ async function bubbleSort(){
     bars[0].style.backgroundColor = "#2ecc71";
     toggleControls(true);
 }
-
 function toggleControls(state) {
     const allbtn = document.querySelectorAll('button');
     allbtn.forEach(btn => {
@@ -77,32 +71,23 @@ selectionbtn.addEventListener('click', () => {
     toggleControls(false);
     selectionsort();
 });
-
 async function selectionsort(){
     let bars = document.querySelectorAll('.bar');
     let n = bars.length;
-
     for (let i = 0; i<n - 1; i++){
         let mini = i;
-
         bars[mini].style.backgroundColor = "red";
-
         for (let j = i + 1; j < n; j++){
             bars[j].style.backgroundColor = "yellow";
             await sleep(stepdelay);
-
             let heights = parseInt(bars[j].style.height);
             let heightmin = parseInt(bars[mini].style.height);
-
             if (heights < heightmin){
                 bars[mini].style.backgroundColor = "#47b2d0";
                 mini = j;
-
                 bars[mini].style.backgroundColor = "red";
-
             } else {
                 bars[j].style.backgroundColor = "#47b2d0";
-
             }
         }
         if (mini !== i){
@@ -113,5 +98,37 @@ async function selectionsort(){
         bars[i].style.backgroundColor = "#2ecc71";
     }
     bars[n - 1].style.backgroundColor = "#2ecc71";
+    toggleControls(true);
+}
+// Insertion Sort
+const insertionbtn = document.getElementById('insertion');
+insertionbtn.addEventListener('click', () => {
+    toggleControls(false);
+    insertionsort();
+});
+
+async function insertionsort(){
+    let bars = document.querySelectorAll('.bar');
+    let n = bars.length;
+    for (let i = 1; i < n; i++){
+        let j = i;
+        bars[i].style.backgroundColor = "yellow";
+        await sleep(stepdelay);
+        while (j > 0 &&  parseInt(bars[j].style.height) < parseInt(bars[j - 1].style.height)){
+            bars[j].style.backgroundColor = "red";
+            bars[j - 1].style.backgroundColor = "yellow";
+            await sleep(stepdelay);
+            let temp = bars[j].style.height;
+            bars[j].style.height = bars[j - 1].style.height;
+            bars[j - 1].style.height = temp;
+            bars[j].style.backgroundColor = "#47b2d0";
+            bars[j-1].style.backgroundColor = "red";
+            j = j - 1;
+        }
+        bars[j].style.backgroundColor = "#2ecc71";
+    }
+    bars.forEach(bar => {
+        bar.style.backgroundColor = "#2ecc71";
+    });
     toggleControls(true);
 }
