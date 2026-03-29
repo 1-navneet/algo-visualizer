@@ -35,6 +35,15 @@ header {
     cursor: pointer;
 }
 
+.controls label {
+    padding: 12px 24px;
+    border-radius: 10px;
+    background-color: #044b7a;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+}
+
 #bar-container{
     display: flex;
     align-items: flex-end;
